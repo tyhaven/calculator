@@ -11,22 +11,6 @@ let firstNum = 5
 let secondNum = 2
 let calcOp = '-'
 
-function add (num1, num2) {
-    return +num1 + +num2
-}
-
-function subtract (num1, num2) {
-    return +num1 - +num2
-}
-
-function multiply (num1, num2) {
-    return +num1 * +num2
-}
-
-function divide (num1, num2) {
-    return +num1 / num2
-}
-
 function operate () {
     switch(calcOp) {
         case '+':
@@ -64,8 +48,9 @@ buttons.forEach(button => {
 //Push display number to num1  for storage on operator click
 symbols.forEach(button => {
     button.addEventListener('click', () => {
-        firstNum.push(runningDisplay.toString()
-                                .replace(/[^-.\d]/g, ''))
+        firstNum = runningDisplay.toString()
+                                .replace(/[^-.\d]/g, '')
+        calcOp = button.textContent.toString()
         console.log(firstNum)
     })
 })
