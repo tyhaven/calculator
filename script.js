@@ -7,27 +7,48 @@ let decimal = document.querySelector('#decimal')
 let negative = document.querySelector('#negative')
 let display = document.querySelector('.display')
 let runningDisplay = []
-let firstNum = []
-let secondNum = []
+let firstNum = 5
+let secondNum = 2
+let calcOp = '-'
 
 function add (num1, num2) {
-    return num1 + num2
+    return +num1 + +num2
 }
 
 function subtract (num1, num2) {
-    return num1 - num2
+    return +num1 - +num2
 }
 
 function multiply (num1, num2) {
-    return num1 * num2
+    return +num1 * +num2
 }
 
 function divide (num1, num2) {
-    return num1 / num2
+    return +num1 / num2
 }
 
-function operate (num1, num2) {
-
+function operate () {
+    switch(calcOp) {
+        case '+':
+            // add(firstNum, secondNum)
+            return +firstNum + +secondNum
+            break;
+        case '-':
+            // subtract(firstNum, secondNum)
+            return +firstNum - +secondNum
+            break;
+        case 'x':
+            // multiply(firstNum, secondNum)
+            return +firstNum * +secondNum
+            break;
+        case '/':
+            // divide(firstNum, secondNum)
+            return +firstNum / +secondNum
+            break;
+        default:
+            return "this isn't working right"
+            break;
+    }
 }
 
 //Add event listener to each number, push number to display array
