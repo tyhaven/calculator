@@ -4,10 +4,11 @@ let clear = document.querySelector('#clear')
 let allClear = document.querySelector('#allClear')
 let equals = document.querySelector('#equals')
 let decimal = document.querySelector('#decimal')
+let negative = document.querySelector('#negative')
 let display = document.querySelector('.display')
 let runningDisplay = []
-let num1 = []
-let num2 = []
+let firstNum = []
+let secondNum = []
 
 function add (num1, num2) {
     return num1 + num2
@@ -25,7 +26,7 @@ function divide (num1, num2) {
     return num1 / num2
 }
 
-function operate () {
+function operate (num1, num2) {
 
 }
 
@@ -35,35 +36,43 @@ buttons.forEach(button => {
         runningDisplay.push(button.textContent)
         console.log(runningDisplay)
         display.textContent = runningDisplay.toString()
-                                            .replace(/\D/g, '') //concatenate arr of nums to single num
+                                            .replace(/[^-.\d]/g, '') //concatenate arr of nums to single num
     })
 })
 
 //Push display number to num1  for storage on operator click
 symbols.forEach(button => {
     button.addEventListener('click', () => {
-        num1.push(runningDisplay.toString()
-                                .replace(/\D/g, ''))
-        console.log(num1)
+        firstNum.push(runningDisplay.toString()
+                                .replace(/[^-.\d]/g, ''))
+        console.log(firstNum)
     })
-
 })
 
 allClear.addEventListener('click', () => {
     runningDisplay = []
     display.textContent = runningDisplay.toString()
-                                            .replace(/\D/g, '')
+                                            .replace(/[^-.\d]/g, '')
     console.log(runningDisplay)
 })
 
 clear.addEventListener('click', () => {
     runningDisplay.pop()
     display.textContent = runningDisplay.toString()
-                                            .replace(/\D/g, '')
+                                            .replace(/[^-.\d]/g, '')
     console.log(runningDisplay)
-    
-
 })
 
+decimal.addEventListener('click', ()  => {
+    runningDisplay.push(decimal.textContent)
+    console.log(runningDisplay)
+    display.textContent = runningDisplay.toString()
+                                            .replace(/[^-.\d]/g, '')
+})
 
-
+negative.addEventListener('click', () => {
+    runningDisplay.unshift('-') 
+    console.log(runningDisplay)
+    display.textContent = runningDisplay.toString()
+                                        .replace(/[^-.\d]/g, '')
+})
