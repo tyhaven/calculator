@@ -18,19 +18,15 @@ let calcOp = '-'
 function operate () {
     switch(calcOp) {
         case '+':
-            // add(firstNum, secondNum)
             return +firstNum + +secondNum
             break;
         case '-':
-            // subtract(firstNum, secondNum)
             return +firstNum - +secondNum
             break;
         case 'x':
-            // multiply(firstNum, secondNum)
             return +firstNum * +secondNum
             break;
         case '/':
-            // divide(firstNum, secondNum)
             return +firstNum / +secondNum
             break;
         default:
@@ -58,10 +54,6 @@ symbols.forEach(button => {
         display.textContent = ''
         runningDisplay = []
         button.style.backgroundColor = '#757575'
-        console.log(firstNum)
-        console.log(runningDisplay)
-        console.log(calcOp)
-
     })
 })
 
@@ -69,6 +61,9 @@ allClear.addEventListener('click', () => {
     runningDisplay = []
     display.textContent = runningDisplay.toString()
                                             .replace(/[^-.\d]/g, '')
+    firstNum = ''
+    secondNum = ''
+    calcOp = ''
     console.log(runningDisplay)
 })
 
@@ -94,5 +89,11 @@ negative.addEventListener('click', () => {
 })
 
 equals.addEventListener('click', () => {
+    secondNum = runningDisplay.toString()
+                            .replace(/[^-.\d]/g, '')
+    display.textContent = operate()
+    symbols.forEach(button => {
+        button.style.backgroundColor = '#ffffff'
+    })
 
 })
