@@ -1,5 +1,9 @@
 let buttons = document.querySelectorAll('.numbers')
 let symbols = document.querySelectorAll('.symbols')
+let plus = document.querySelector('#add')
+let minus = document.querySelector('#subtract')
+let times = document.querySelector('#multiply')
+let divide = document.querySelector('#divide')
 let clear = document.querySelector('#clear')
 let allClear = document.querySelector('#allClear')
 let equals = document.querySelector('#equals')
@@ -51,7 +55,13 @@ symbols.forEach(button => {
         firstNum = runningDisplay.toString()
                                 .replace(/[^-.\d]/g, '')
         calcOp = button.textContent.toString()
+        display.textContent = ''
+        runningDisplay = []
+        button.style.backgroundColor = '#757575'
         console.log(firstNum)
+        console.log(runningDisplay)
+        console.log(calcOp)
+
     })
 })
 
@@ -81,4 +91,8 @@ negative.addEventListener('click', () => {
     console.log(runningDisplay)
     display.textContent = runningDisplay.toString()
                                         .replace(/[^-.\d]/g, '')
+})
+
+equals.addEventListener('click', () => {
+
 })
