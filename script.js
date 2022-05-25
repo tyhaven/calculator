@@ -37,11 +37,11 @@ function operate () {
             case 'x':
                 return +firstNum * +secondNum
                 break;
-            case '/':
+            case '÷':
                 return +firstNum / +secondNum
                 break;
             default:
-                return "this isn't working right"
+                return "You broke my calculator >:("
                 break;
         }
     } else if (currentTotal !== '') {
@@ -56,11 +56,11 @@ function operate () {
             case 'x':
                 return +currentTotal * +secondNum
                 break;
-            case '/':
+            case '÷':
                 return +currentTotal / +secondNum
                 break;
             default:
-                return "this isn't working right"
+                return "You broke my calculator >:("
                 break;
         }
     }
@@ -138,7 +138,7 @@ equals.addEventListener('click', () => {
     display.textContent = currentTotal
     secondNum = ''
     symbols.forEach(button => {
-        button.style.backgroundColor = '65, 104, 93'
+        // button.style.backgroundColor = '65, 104, 93'
     })
     }
     test()
