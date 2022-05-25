@@ -11,9 +11,9 @@ let decimal = document.querySelector('#decimal')
 let negative = document.querySelector('#negative')
 let display = document.querySelector('.display')
 let runningDisplay = []
-let firstNum = 5
-let secondNum = 2
-let calcOp = '-'
+let firstNum = ''
+let secondNum = ''
+let calcOp = ''
 
 function operate () {
     switch(calcOp) {
@@ -48,12 +48,21 @@ buttons.forEach(button => {
 //Push display number to num1  for storage on operator click
 symbols.forEach(button => {
     button.addEventListener('click', () => {
+        if (firstNum === '') { //Fixes bug when doing string of calculations where the following line overwrites the total
         firstNum = runningDisplay.toString()
                                 .replace(/[^-.\d]/g, '')
+        }
+        if (firstNum !== '' &&  secondNum !== ''){
+            total = operate()
+            display.textContent = total
+        }
         calcOp = button.textContent.toString()
         display.textContent = ''
         runningDisplay = []
         button.style.backgroundColor = '#757575'
+        console.log(runningDisplay)
+        console.log(firstNum)
+        console.log(secondNum)
     })
 })
 
@@ -91,9 +100,15 @@ negative.addEventListener('click', () => {
 equals.addEventListener('click', () => {
     secondNum = runningDisplay.toString()
                             .replace(/[^-.\d]/g, '')
-    display.textContent = operate()
+    total = operate()
+    display.textContent = total
+    firstNum = total
+    secondNum = ''
     symbols.forEach(button => {
         button.style.backgroundColor = '#ffffff'
     })
+    console.log(firstNum)
+    console.log(secondNum)
+    console.log(runningDisplay)
 
 })
