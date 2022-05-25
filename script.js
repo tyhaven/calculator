@@ -16,6 +16,14 @@ let secondNum = ''
 let currentTotal = ''
 let calcOp = ''
 
+function test() {
+    console.log(firstNum)
+    console.log(secondNum)
+    console.log(currentTotal)
+    console.log(runningDisplay)
+    console.log(calcOp)
+}
+
 function operate () {
     if (currentTotal === '') {
         console.log('first')
@@ -75,28 +83,22 @@ symbols.forEach(button => {
         firstNum = runningDisplay.toString()
                                 .replace(/[^-.\d]/g, '')
          }
-        if (firstNum !== '' && calcOp !== ''){
+        if (firstNum !== '' && calcOp !== ''){ //if initial calculation has been done, write display number to second variable instead of  first
             secondNum = runningDisplay.toString()
                                     .replace(/[^-.\d]/g, '')
             currentTotal = operate()
             display.textContent = currentTotal
         }
-       
-        if (currentTotal === '') {
+        if (currentTotal === '') { 
             display.textContent = firstNum
         }
-        
         calcOp = button.textContent.toString()
         runningDisplay = []
         button.style.backgroundColor = '#757575'
-        console.log(runningDisplay)
-        console.log(firstNum)
-        console.log(secondNum)
-        console.log(currentTotal)
     })
 })
 
-allClear.addEventListener('click', () => {
+allClear.addEventListener('click', () => { //Clear all variables and display
     runningDisplay = []
     display.textContent = runningDisplay.toString()
                                             .replace(/[^-.\d]/g, '')
@@ -105,45 +107,39 @@ allClear.addEventListener('click', () => {
     calcOp = ''
     currentTotal = ''
     runningDisplay = []
-    console.log(runningDisplay)
-    console.log(firstNum)
-    console.log(secondNum)
-    console.log(currentTotal)
-    console.log(calcOp)
 })
 
-clear.addEventListener('click', () => {
+clear.addEventListener('click', () => { //Pop last number added to runningDisplay
     runningDisplay.pop()
     display.textContent = runningDisplay.toString()
                                             .replace(/[^-.\d]/g, '')
-    console.log(runningDisplay)
 })
 
 decimal.addEventListener('click', ()  => {
     runningDisplay.push(decimal.textContent)
-    console.log(runningDisplay)
     display.textContent = runningDisplay.toString()
                                             .replace(/[^-.\d]/g, '')
 })
 
-negative.addEventListener('click', () => {
+negative.addEventListener('click', () => { 
     runningDisplay.unshift('-') 
-    console.log(runningDisplay)
     display.textContent = runningDisplay.toString()
                                         .replace(/[^-.\d]/g, '')
 })
 
 equals.addEventListener('click', () => {
+    
+    if (calcOp === '') {
+        return
+    } else {
     secondNum = runningDisplay.toString()
                             .replace(/[^-.\d]/g, '')
     currentTotal = operate()
     display.textContent = currentTotal
     secondNum = ''
     symbols.forEach(button => {
-        button.style.backgroundColor = '#ffffff'
+        button.style.backgroundColor = '65, 104, 93'
     })
-    console.log(firstNum)
-    console.log(secondNum)
-    console.log(runningDisplay)
-
+    }
+    test()
 })
