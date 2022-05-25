@@ -1,10 +1,12 @@
 #calcBody {
     display: grid;
-
+    background-color: rgb(40, 40, 40);
+    border-radius: 60px;
+    padding: 15px;
     width: 500px;
     height: 725px;
     margin: auto;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     
@@ -16,6 +18,8 @@
     grid-row-start: 1;
     grid-row-end: 2;
     font-size: 48px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
     padding: 30px;
     display: flex;
     align-items: flex-end;
@@ -23,16 +27,30 @@
 }
 
 .btns {
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: xx-large;
+    color: white;
+    border-radius: 50%;
+    margin: 15px;
 }
 
-.btns:hover {
-    background-color: rgb(205, 205, 205);
+.numbers {
+    background-color: rgb(109, 109, 109);
+}
+
+.symbols {
+    background-color: rgb(65, 94, 103);
+}
+
+.misc {
+    background-color: rgb(181, 181, 181);
+}
+
+.clears {
+    background-color: cadetblue;
 }
 
 #one {
@@ -105,4 +123,5 @@
 #allClear {
     grid-column: 1 / 3;
     grid-row: 6 / 7;
+    border-radius: 45px;
 }

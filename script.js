@@ -13,25 +13,48 @@ let display = document.querySelector('.display')
 let runningDisplay = []
 let firstNum = ''
 let secondNum = ''
+let currentTotal = ''
 let calcOp = ''
 
 function operate () {
-    switch(calcOp) {
-        case '+':
-            return +firstNum + +secondNum
-            break;
-        case '-':
-            return +firstNum - +secondNum
-            break;
-        case 'x':
-            return +firstNum * +secondNum
-            break;
-        case '/':
-            return +firstNum / +secondNum
-            break;
-        default:
-            return "this isn't working right"
-            break;
+    if (currentTotal === '') {
+        console.log('first')
+        switch(calcOp) {
+            case '+':
+                return +firstNum + +secondNum
+                break;
+            case '-':
+                return +firstNum - +secondNum
+                break;
+            case 'x':
+                return +firstNum * +secondNum
+                break;
+            case '/':
+                return +firstNum / +secondNum
+                break;
+            default:
+                return "this isn't working right"
+                break;
+        }
+    } else if (currentTotal !== '') {
+        console.log('second')
+        switch(calcOp) {
+            case '+':
+                return +currentTotal + +secondNum
+                break;
+            case '-':
+                return +currentTotal - +secondNum
+                break;
+            case 'x':
+                return +currentTotal * +secondNum
+                break;
+            case '/':
+                return +currentTotal / +secondNum
+                break;
+            default:
+                return "this isn't working right"
+                break;
+        }
     }
 }
 
@@ -48,21 +71,28 @@ buttons.forEach(button => {
 //Push display number to num1  for storage on operator click
 symbols.forEach(button => {
     button.addEventListener('click', () => {
-        if (firstNum === '') { //Fixes bug when doing string of calculations where the following line overwrites the total
+         if (firstNum === '') { //Fixes bug when doing string of calculations where the following line overwrites the total
         firstNum = runningDisplay.toString()
                                 .replace(/[^-.\d]/g, '')
+         }
+        if (firstNum !== '' && calcOp !== ''){
+            secondNum = runningDisplay.toString()
+                                    .replace(/[^-.\d]/g, '')
+            currentTotal = operate()
+            display.textContent = currentTotal
         }
-        if (firstNum !== '' &&  secondNum !== ''){
-            total = operate()
-            display.textContent = total
+       
+        if (currentTotal === '') {
+            display.textContent = firstNum
         }
+        
         calcOp = button.textContent.toString()
-        display.textContent = ''
         runningDisplay = []
         button.style.backgroundColor = '#757575'
         console.log(runningDisplay)
         console.log(firstNum)
         console.log(secondNum)
+        console.log(currentTotal)
     })
 })
 
@@ -73,7 +103,13 @@ allClear.addEventListener('click', () => {
     firstNum = ''
     secondNum = ''
     calcOp = ''
+    currentTotal = ''
+    runningDisplay = []
     console.log(runningDisplay)
+    console.log(firstNum)
+    console.log(secondNum)
+    console.log(currentTotal)
+    console.log(calcOp)
 })
 
 clear.addEventListener('click', () => {
@@ -100,9 +136,8 @@ negative.addEventListener('click', () => {
 equals.addEventListener('click', () => {
     secondNum = runningDisplay.toString()
                             .replace(/[^-.\d]/g, '')
-    total = operate()
-    display.textContent = total
-    firstNum = total
+    currentTotal = operate()
+    display.textContent = currentTotal
     secondNum = ''
     symbols.forEach(button => {
         button.style.backgroundColor = '#ffffff'
